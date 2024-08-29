@@ -13,6 +13,7 @@
             --text-color: #333333;
             --text-light: #666666;
             --accent-color: #6772e5;
+            --selected-bg: #e0e0e0;
         }
         body, html {
             margin: 0;
@@ -101,9 +102,13 @@
             padding: 0.5rem 0;
             cursor: pointer;
             transition: all 0.3s ease;
+            border-radius: 4px;
         }
         .sidebar li:hover {
             color: var(--accent-color);
+        }
+        .sidebar li.selected {
+            background-color: var(--selected-bg);
         }
         .sidebar li svg {
             width: 20px;
@@ -333,6 +338,11 @@
                     ? projects 
                     : projects.filter(project => project.category === category);
                 renderProjects(filteredProjects);
+                
+                // Remove 'selected' class from all categories
+                categoryList.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+                // Add 'selected' class to the clicked category
+                e.target.classList.add('selected');
             }
         });
     }
