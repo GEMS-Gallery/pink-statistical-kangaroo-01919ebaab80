@@ -1,0 +1,18 @@
+type Result = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Project = 
+ record {
+   category: text;
+   id: nat;
+   title: text;
+   url: text;
+ };
+service : {
+  addProject: (text, text, text) -> (Result);
+  getCategories: () -> (vec text) query;
+  getProjects: () -> (vec Project) query;
+  getProjectsByCategory: (text) -> (vec Project) query;
+}
